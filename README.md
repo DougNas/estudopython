@@ -1,4 +1,4 @@
-# estudopython
+# Curriculo OnLine
 
 -----------Aplicação para criação de site: Curriculo online----------
 
