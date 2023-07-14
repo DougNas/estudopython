@@ -48,7 +48,7 @@ def SalvarImagem(imagem):
     codigo = secrets.token_hex(8)
     nome, extencao = os.path.splitext(imagem.filename)
     nome_imagem = nome + codigo + extencao
-    caminho_imagem = os.path.join(app.root_path, 'static\images', nome_imagem)
+    caminho_imagem = os.path.join(app.root_path, 'static/images', nome_imagem)
     # reduzir o tamanho da imagem
     tamanho = (300, 300)
     imagem_reduzida = Image.open(imagem)
