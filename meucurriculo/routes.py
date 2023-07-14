@@ -123,7 +123,7 @@ def usuario():
     form_usuario = FormUsuario()
     if request.method == 'POST' and 'botaoSubmitEditar' in request.form:
         with app.app_context():
-            senha_cript = bcrypt.generate_password_hash(form_usuario.senha.data)
+            senha_cript = bcrypt.generate_password_hash(form_usuario.senha.data).decode("utf-8")
             current_user.username = form_usuario.username.data
             current_user.senha = senha_cript
             current_user.firstname = form_usuario.firstname.data
