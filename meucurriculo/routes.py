@@ -188,7 +188,7 @@ def login():
             if pag_next:
                 return redirect(pag_next)
             else:
-                return redirect(url_for('/'))
+                return redirect('/')
             return redirect(url_for('/'))
         else:
             flash('Falha no Login! Tente novamente ou entre em contato com o desenvolvedor.', 'alert-danger')
