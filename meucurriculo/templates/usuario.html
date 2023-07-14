@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<section class="">
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <h3>Editar dados</h3>
+          <form method="POST" action="" class="border p-4 mt-2" enctype="multipart/form-data">
+          {{ form_usuario.csrf_token }}
+            <div> <!-- Dados de acesso -->
+              <legend>Dados de Acesso:</legend>
+              <div class="row"> <!-- Username e Senha -->
+                <div class="col-6"> <!-- Username -->
+                    {{ form_usuario.username (class="form-control") }}
+                    {% if form_usuario.username.errors %}
+                        {% for erro in form_usuario.username.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.username.label (class="form-control-label") }}
+                  </div>
+                <div class="col-6"> <!-- Senha -->
+                    {{ form_usuario.senha (class="form-control") }}
+                    {% if form_usuario.senha.errors %}
+                        {% for erro in form_usuario.senha.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.senha.label (class="form-control-label") }}
+                  </div>
+              </div>
+
+            </div>
+            <hr>
+            <div> <!-- Dados Pessoais -->
+              <legend>Dados Pessoais:</legend>
+              <div class="row"> <!-- Nome do Usuario e data de nascimento -->
+                <div class="col-5">
+                    {{ form_usuario.firstname (class="form-control") }}
+                    {% if form_usuario.firstname.errors %}
+                        {% for erro in form_usuario.firstname.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.firstname.label (class="form-control-label") }}
+                </div>
+                <div class="col-5">
+                    {{ form_usuario.lastname (class="form-control") }}
+                    {% if form_usuario.lastname.errors %}
+                        {% for erro in form_usuario.lastname.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.lastname.label (class="form-control-label") }}
+                </div>
+                <div class="col-2">
+                    {{ form_usuario.nascimento (class="form-control") }}
+                    {% if form_usuario.nascimento.errors %}
+                        {% for erro in form_usuario.nascimento.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.nascimento.label (class="form-control-label") }}
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div> <!-- Dados de Contato -->
+              <legend>Contatos:</legend>
+              <div class="row">
+                <div class="col-6">
+                    {{ form_usuario.fone (class="form-control") }}
+                    {% if form_usuario.fone.errors %}
+                        {% for erro in form_usuario.fone.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.fone.label (class="form-control-label") }}
+                </div>
+                <div class="col-6">
+                    {{ form_usuario.email (class="form-control") }}
+                    {% if form_usuario.email.errors %}
+                        {% for erro in form_usuario.email.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.email.label (class="form-control-label") }}
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div> <!-- Endereço -->
+              <legend>Endereço:</legend>
+              <div class="col">
+                    {{ form_usuario.logradouro (class="form-control") }}
+                    {% if form_usuario.logradouro.errors %}
+                        {% for erro in form_usuario.logradouro.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.logradouro.label (class="form-control-label") }}
+                </div>
+              <div class="row">
+                <div class="col-4">
+                    {{ form_usuario.bairro (class="form-control") }}
+                    {% if form_usuario.bairro.errors %}
+                        {% for erro in form_usuario.bairro.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.bairro.label (class="form-control-label") }}
+                </div>
+                <div class="col-4">
+                    {{ form_usuario.cidade (class="form-control") }}
+                    {% if form_usuario.cidade.errors %}
+                        {% for erro in form_usuario.cidade.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.cidade.label (class="form-control-label") }}
+                </div>
+                <div class="col-2">
+                    {{ form_usuario.uf (class="form-control") }}
+                    {% if form_usuario.uf.errors %}
+                        {% for erro in form_usuario.uf.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.uf.label (class="form-control-label") }}
+                </div>
+                <div class="col-2">
+                    {{ form_usuario.cep (class="form-control") }}
+                    {% if form_usuario.cep.errors %}
+                        {% for erro in form_usuario.cep.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.cep.label (class="form-control-label") }}
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div> <!-- Atualização de links para redes sociais. Estes links serão acessados pelo menu -->
+              <legend>Redes Sociais:</legend>
+              <div class="col">
+                  {{ form_usuario.facebook (class="form-control") }}
+                  {% if form_usuario.facebook.errors %}
+                      {% for erro in form_usuario.facebook.errors %}
+                          {{ erro }}
+                      {% endfor %}
+                  {% endif %}
+                  {{ form_usuario.facebook.label (class="form-control-label") }}
+              </div>
+              <div class="col">
+                  {{ form_usuario.instagran (class="form-control") }}
+                  {% if form_usuario.instagran.errors %}
+                      {% for erro in form_usuario.instagran.errors %}
+                          {{ erro }}
+                      {% endfor %}
+                  {% endif %}
+                  {{ form_usuario.instagran.label (class="form-control-label") }}
+              </div>
+              <div class="col">
+                  {{ form_usuario.linkedin (class="form-control") }}
+                  {% if form_usuario.linkedin.errors %}
+                      {% for erro in form_usuario.linkedin.errors %}
+                          {{ erro }}
+                      {% endfor %}
+                  {% endif %}
+                  {{ form_usuario.linkedin.label (class="form-control-label") }}
+              </div>
+              <div class="col">
+                  {{ form_usuario.github (class="form-control") }}
+                  {% if form_usuario.github.errors %}
+                      {% for erro in form_usuario.github.errors %}
+                          {{ erro }}
+                      {% endfor %}
+                  {% endif %}
+                  {{ form_usuario.github.label (class="form-control-label") }}
+              </div>
+            </div>
+            <hr>
+            <div> <!-- Dados de Adicionais -->
+              <legend>Dados Adicionais:</legend>
+                <div class="col">
+                  {{ form_usuario.profissao (class="form-control") }}
+                  {% if form_usuario.profissao.errors %}
+                      {% for erro in form_usuario.profissao.errors %}
+                          {{ erro }}
+                      {% endfor %}
+                  {% endif %}
+                  {{ form_usuario.profissao.label (class="form-control-label") }}
+                </div>
+              <div class="row">
+                <div class="col-6"> <!-- Objetivos Profissionais, inicio do curriculo -->
+                    {{ form_usuario.objetivo (class="form-control") }}
+                    {% if form_usuario.objetivo.errors %}
+                        {% for erro in form_usuario.objetivo.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.objetivo.label (class="form-control-label") }}
+                </div>
+                <div class="col-6"> <!-- Competencias e outras observações, final do curriculo -->
+                    {{ form_usuario.competencias (class="form-control") }}
+                    {% if form_usuario.competencias.errors %}
+                        {% for erro in form_usuario.competencias.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_usuario.competencias.label (class="form-control-label") }}
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div> <!-- Foto de Perfil e aceite -->
+              <legend>Finalizar:</legend>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    {{ form_usuario.foto_perfil.label }}
+                    {{ form_usuario.foto_perfil (class="form-control-file") }}
+                    {% if form_usuario.foto_perfil.errors %}
+                        {% for erro in form_usuario.foto_perfil.erros %}
+                            <span class="text-danger">{{ erro }}</span><br>
+                        {% endfor %}
+                    {% endif %}
+                  </div>
+                  <br>
+                  <div class="form-group"> <!-- O QRCode só será visivel na versão impresa -->
+                    {{ form_usuario.qrcode.label }}
+                    {{ form_usuario.qrcode (class="form-control-file") }}
+                    {% if form_usuario.qrcode.errors %}
+                        {% for erro in form_usuario.qrcode.erros %}
+                            <span class="text-danger">{{ erro }}</span><br>
+                        {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="col-6"> <!-- Botão -->
+                  <div class="row">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6">
+                        {{ form_usuario.botaoSubmitEditar (class = "btn btn-primary mt-2")}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

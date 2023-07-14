@@ -1,0 +1,80 @@
+<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Currículo Vitae</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#conhecimentos">Formação</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#experiencias">Experiência</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Minhas Redes
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="{{ url_for('linkdin') }}" target="_blank">
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{ url_for('linkgit') }}" target="_blank">
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{ url_for('linkinsta') }}" target="_blank">
+                Instagran
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{ url_for('linkface') }}" target="_blank">
+                Facebook
+              </a>
+            </li>
+            <!--<li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ url_for('enviar') }}">Contato</a></li> -->
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('imprimir') }}" target="_blank">
+              Versão para Impressão
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ url_for('usuario') }}">
+              Bem vindo(a) <strong>{{ current_user.firstname }}</strong>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ url_for('perfil') }}">
+              Perfil
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ url_for('sair') }}">
+              Sair
+            </a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}">
+              Login
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

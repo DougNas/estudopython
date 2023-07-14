@@ -1,0 +1,33 @@
+*{
+    margin: 0px;
+    padding: 0,5px;
+}
+
+body {
+    font-family:sans-serif
+}
+
+p {
+    text-align: Justify;
+    font-size: 14px
+}
+
+.qrcode {
+    margin: 0px;
+    padding:0px;
+    float: right;
+}
+
+.obsfinal {
+    position: relative;
+    float: left;
+    display: flex;
+    flex-wrap: nowrap;
+    padding-right: 150px;
+}
+
+.link {
+    text-decoration: None;
+    font-size: 12px;
+    margin-bottom: 8px
+}

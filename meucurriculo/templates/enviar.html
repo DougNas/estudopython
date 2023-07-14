@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<section class="">
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-8 mb-5 mb-lg-0">
+          <div class="card">
+            <div class="card-body py-5 px-md-5">
+              <form method="POST" action="">
+                {{ form_enviar.csrf_token }}
+                <legend>Contato:</legend>
+                <hr>
+                <fieldset>
+                  <!-- Nome do Remetente -->
+                  <div class="form-outline mb-4">
+
+                    {{ form_enviar.nome (class="form-control") }}
+                    {% if form_enviar.nome.errors %}
+                        {% for erro in form_login.nome.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_enviar.nome.label (class="form-control-label")}}
+
+                  </div>
+                  <!-- E-mail do Remetente-->
+                  <div class="form-outline mb-4">
+
+                    {{ form_enviar.email (class="form-control") }}
+                    {% if form_enviar.email.errors %}
+                        {% for erro in form_login.email.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_enviar.email.label (class="form-control-label")}}
+
+                  </div>
+                  <!-- Titulo da Mensagem -->
+                  <div class="form-outline mb-4">
+
+                    {{ form_enviar.titulo (class="form-control") }}
+                    {% if form_enviar.titulo.errors %}
+                        {% for erro in form_login.titulo.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_enviar.titulo.label (class="form-control-label")}}
+
+                  </div>
+                  <!-- Mensagem -->
+                  <div class="form-outline mb-4">
+
+                    {{ form_enviar.corpo.label (class="form-control-label") }}
+                    {% if form_enviar.corpo.errors %}
+                        {% for erro in form_login.corpo.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_enviar.corpo (class="form-control") }}
+
+                  </div>
+                </fieldset> <!-- Submit button -->
+
+                {{ form_enviar.botaoSubmitEnviar (class = "btn btn-primary mt-2")}}
+
+                <!-- Atalhos para Redes Sociais -->
+                <div class="text-center">
+                  <legend>Visite minhas redes:</legend>
+                  <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-2">
+                      <a href="{{ url_for('linkgit') }}" target="_blank">
+                        <img src="{{ icongit }}" class="rounded" width="30">
+                      </a>
+                    </div>
+                    <div class="col-2">
+                      <a href="{{ url_for('linkdin') }}" target="_blank">
+                        <img src="{{ iconln }}" class="rounded" width="30">
+                      </a>
+                    </div>
+                    <div class="col-2">
+                      <a href="{{ url_for('linkface') }}" target="_blank">
+                        <img src="{{ iconface }}" class="rounded" width="30">
+                      </a>
+                    </div>
+                    <div class="col-2">
+                      <a href="{{ url_for('linkinsta') }}" target="_blank">
+                        <img src="{{ iconinst }}" class="rounded" width="30">
+                      </a>
+                    </div>
+                    <div class="col-2"></div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h1 class="my-5 display-3 fw-bold ls-tight" style="font-size: 55px">
+            Fale com o<br />
+            <span class="text-primary" style="font-size: 45px">desenvolvedor!</span>
+          </h1>
+          <p style="color: hsl(217, 10%, 50.8%)">
+            <strong>Envie uma mensagem.</strong><br>
+            Gostou dessa ferramenta? Envie uma mensagem
+            para o desenvolvedor. Tire dúvidas, faça
+            sugestões, solicite o código-fonte, ou contate
+            para projetos e propostas. Estarei sempre
+            disposto a compartilhar conhecimento e
+            experiencia.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

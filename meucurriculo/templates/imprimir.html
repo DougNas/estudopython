@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="author" content="Douglas Nascimento">
+    <meta name="keywords" content="Currículo, Carreira, Experiência, Profissional">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Meu_Currículo - Impressão</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/minhalogo.png') }}">
+    <link href="/path/to/print.css" media="print" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='impressao.css') }}"
+</head>
+<body>
+
+<div style="margin: 0px 20px 0px 20px">
+    <a class="link" href="" onclick="window.print('imprimir')"">Imprimir esta página</a>
+    <div>
+        <h1 style="text-align: center">{{ usuario1.firstname }} {{ usuario1.lastname }}</h1>
+        <br>
+        <h4 style="text-align: center">
+            Endereço:
+            {{ usuario1.logradouro }},
+            {{ usuario1.bairro }},
+            {{ usuario1.cidade }} -
+            {{ usuario1.uf }}
+        </h4>
+        <h4 style="text-align: center">
+            E-mail: {{ usuario1.email }} - Telefone: {{ usuario1.fone }}
+        </h4>
+        <hr>
+    </div>
+    <div>
+        <h2>Objetivo:</h2>
+        <p> {{ usuario1.objetivo }}</p>
+        <br>
+        <hr>
+        <h2>Formação:</h2>
+
+        {% for academico in academicos %}
+            {% if loop.index0 < 1 %}
+                <div>
+                    <p><strong>{{ academico.curso }}</strong> na {{ academico.escola }}</p>
+                    <p>
+                        {% if academico.datafinal != None %}
+                            <strong>De:</strong> {{ academico.dataini.strftime("%m/%Y") }} à {{ academico.datafinal.strftime("%m/%Y") }}
+                        {% else %}
+                            <strong>De:</strong> {{ academico.dataini.strftime("%m/%Y") }} à em andamento
+                        {% endif %}
+                    </p>
+                    <p><strong>Competência desenvolvida:</strong> {{ academico.competencia }}</p>
+                    <br>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for especializacao in especializacoes %}
+            {% if loop.index0 < 2 %}
+                <div>
+                    <p><strong>{{ especializacao.curso }}</strong> na {{ especializacao.escola }}</p>
+                    <p>
+                        {% if especializacao.datafinal != None %}
+                            <strong>De:</strong> {{ especializacao.dataini.strftime("%m/%Y") }} à {{ especializacao.datafinal.strftime("%m/%Y") }}
+                        {% else %}
+                            <strong>De:</strong> {{ especializacao.dataini.strftime("%m/%Y") }} à em andamento
+                        {% endif %}
+                    </p>
+                    <p><strong>Competência desenvolvida:</strong> {{ especializacao.competencia }}</p>
+                    <br>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for lingua in linguas %}
+            {% if loop.index0 < 1 %}
+                <div>
+                    <p><strong>{{ lingua.curso }}</strong> na {{ lingua.escola }}</p>
+                    <p>
+                        {% if lingua.datafinal != None %}
+                            <strong>De:</strong> {{ lingua.dataini.strftime("%m/%Y") }} à {{ lingua.datafinal.strftime("%m/%Y") }}
+                        {% else %}
+                            <strong>De:</strong> {{ lingua.dataini.strftime("%m/%Y") }} à em andamento
+                        {% endif %}
+                    </p>
+                    <p><strong>Competência desenvolvida:</strong> {{ lingua.competencia }}</p>
+                    <br>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <hr>
+    </div>
+    <div>
+        <h2>Experiencia Profissional:</h2>
+        {% for experiencia in experiencias %}
+            {% if loop.index0 < 3 %}
+                <div>
+                    <p><strong>{{ experiencia.cargo }}</strong> na {{ experiencia.entidade }}</p>
+                    <p>
+                        {% if experiencia.datafim != None %}
+                            <strong>De:</strong> {{ experiencia.dataadmin.strftime("%m/%Y") }} à {{ experiencia.datafim.strftime("%m/%Y") }}
+                        {% else %}
+                            <strong>De:</strong> {{ experiencia.dataadmin.strftime("%m/%Y") }} à Atualmente
+                        {% endif %}
+                    </p>
+                    <p><strong>Atribuições da função:</strong> {{ experiencia.atribuicao }}</p>
+                    <br>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <hr>
+    </div>
+    <div>
+        <div>
+            <h3>Considerações finais:</h3>
+            <div class="obsfinal">
+                <p>{{ usuario1.competencias }}</p>
+            </div>
+        </div>
+        <span class="qrcode">
+            {% if usuario1.qrcode == 'default.png' %}
+                <p style="text-align: center">Para saber mais</p>
+                <img src="{{ url_for('static', filename='images/{}'.format(usuario1.qrcode)) }}" width="100">
+                <p style="text-align: center">Escaneie aqui</p>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+</body>
+</html>

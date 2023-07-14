@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<section class="">
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0"> <!-- Parte esquerda da tela, introdutório -->
+          <h1 class="my-5 display-3 fw-bold ls-tight">
+            Atualize <br />
+            <span class="text-primary">seus dados</span>
+          </h1>
+          <p style="color: hsl(217, 10%, 50.8%)">
+            <strong>Faça login para atualizar seus dados.</strong><br>
+            Atualize seu endereço, dados de contato, experiência
+            profissional, cursos e demais habilidades. Inclua cetificados,
+            mude a foto de perfil e mantenha seu curriculo sempre atualizado.
+            Se você não é o proprietário deste site, mas deseja uma
+            ferramenta neste modelo, entre em contado com o desenvolvedor
+            atravéz deste <a href="#" style="text-decoration: None">link</a>.
+          </p>
+        </div>
+        <div class="col-lg-6 mb-5 mb-lg-0"> <!-- Parte direita da tela, formulário de login -->
+          <div class="card">
+            <div class="card-body py-5 px-md-5">
+              <form method="POST" action="">
+                {{ form_login.csrf_token }}
+                <legend>Login</legend>
+                <hr>
+                <!-- Username -->
+                <div class="form-outline mb-4">
+
+                  {{ form_login.username (class="form-control")}}
+                  {% if form_login.username.errors %}
+                      {% for erro in form_login.username.errors %}
+                          {{ erro }}
+                      {% endfor %}
+                  {% endif %}
+                  {{ form_login.username.label (class="form-control-label")}}
+
+                </div>
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+
+                  {{ form_login.senha (class="form-control")}}
+                  {% if form_login.senha.errors %}
+                      {% for erro in form_login.senha.errors %}
+                          {{ erro }}
+                      {% endfor %}
+                  {% endif %}
+                  {{ form_login.senha.label (class="form-control-label")}}
+
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check d-flex justify-content-center mb-4">
+
+                  {{ form_login.lembrar_dados (class="form-check-input mx-2")}}
+                  {{ form_login.lembrar_dados.label (class="form-check-label")}}
+
+                </div>
+                <!-- Submit button -->
+                <div>
+
+                  {{ form_login.botaoSubmitLogin (class = "btn btn-primary mt-2")}}
+
+                </div>
+                <!-- Atalhos para Redes Sociais -->
+                <div class="text-center">
+                  <p>Visite minhas redes:</p>
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-google"></i>
+                  </button>
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

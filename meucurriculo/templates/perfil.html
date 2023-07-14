@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row mt-5">
+        <hr>
+          <div class="col">
+              <!-- Formulário para atulização de Cursos e Conhecimentos -->
+              <form method="POST" action="" class="border p-4 mt-2" enctype="multipart/form-data">
+                  {{ form_habilidade.csrf_token }}
+                  <legend>Atualize seus Conhecimentos</legend>
+                  <fieldset>
+                      <div class="row">
+                          <div class="form-group col-6">
+                              {{ form_habilidade.curso.label (class="form-control-label") }}
+                              {% if form_habilidade.curso.errors %}
+                                {{ form_habilidade.curso (class="form-control is-invalid") }}
+                                <div class = "invalid-feedback">
+                                    {% for erro in form_habilidade.curso.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form_habilidade.curso (class="form-control") }}
+                              {% endif %}
+                          </div>
+                          <div class="form-group col-6">
+                              {{ form_habilidade.tipo_curso.label (class="form-control-label") }}
+                              {% if form_habilidade.tipo_curso.errors %}
+                                {{ form_habilidade.tipo_curso (class="form-control is-invalid") }}
+                                <div class = "invalid-feedback">
+                                    {% for erro in form_habilidade.tipo_curso.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form_habilidade.tipo_curso (class="form-control") }}
+                              {% endif %}
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          {{ form_habilidade.escola.label (class="form-control-label") }}
+                          {% if form_habilidade.escola.errors %}
+                            {{ form_habilidade.escola (class="form-control is-invalid") }}
+                            <div class = "invalid-feedback">
+                                {% for erro in form_habilidade.escola.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                            {{ form_habilidade.escola (class="form-control") }}
+                          {% endif %}
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-6">
+                              {{ form_habilidade.dataini.label (class="form-control-label") }}
+                              {% if form_habilidade.dataini.errors %}
+                                {{ form_habilidade.dataini (class="form-control is-invalid") }}
+                                <div class = "invalid-feedback">
+                                    {% for erro in form_habilidade.dataini.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form_habilidade.dataini(type="date", placeholder="mm/yyyy", class="form-control") }}
+                              {% endif %}
+                          </div>
+                          <div class="form-group col-6">
+                              {{ form_habilidade.datafinal.label (class="form-control-label") }}
+                              {% if form_habilidade.datafinal.errors %}
+                                {{ form_habilidade.datafinal (class="form-control is-invalid") }}
+                                <div class = "invalid-feedback">
+                                    {% for erro in form_habilidade.datafinal.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form_habilidade.datafinal (type="date", placeholder="mm/yyyy", class="form-control") }}
+                              {% endif %}
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          {{ form_habilidade.competencia.label (class="form-control-label") }}
+                          {% if form_habilidade.competencia.errors %}
+                            {{ form_habilidade.competencia (class="form-control is-invalid") }}
+                            <div class = "invalid-feedback">
+                                {% for erro in form_habilidade.competencia.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                            {{ form_habilidade.competencia (class="form-control") }}
+                          {% endif %}
+                      </div>
+                      <div class="form-group">
+                          {{ form_habilidade.certificado.label }}
+                          {{ form_habilidade.certificado }}
+                      </div>
+                  </fieldset>
+                  {{ form_habilidade.botaoSubmitConfirmarCurso (class = "btn btn-primary mt-2") }}
+              </form>
+          </div>
+          <div class="col">
+              <form method="POST" action="" class="border p-4 mt-2">
+                  {{ form_profissao.csrf_token }}
+                  <legend>Atualize suas Experiências Profissionais</legend>
+                  <fieldset>
+                      <div class="row">
+                          <div class="form-group col-4">
+                              {{ form_profissao.cargo.label (class="form-control-label") }}
+                              {% if form_profissao.cargo.errors %}
+                                {{ form_profissao.cargo (class="form-control is-invalid") }}
+                                <div class = "invalid-feedback">
+                                    {% for erro in form_profissao.cargo.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form_profissao.cargo (class="form-control") }}
+                              {% endif %}
+                          </div>
+                          <div class="form-group col-8">
+                              {{ form_profissao.entidade.label (class="form-control-label") }}
+                              {% if form_profissao.entidade.errors %}
+                                {{ form_profissao.entidade (class="form-control is-invalid") }}
+                                <div class = "invalid-feedback">
+                                    {% for erro in form_profissao.entidade.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form_profissao.entidade (class="form-control") }}
+                              {% endif %}
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-6">
+                              {{ form_profissao.dataadmin.label (class="form-control-label") }}
+                              {% if form_profissao.dataadmin.errors %}
+                                {{ form_profissao.dataadmin (class="form-control is-invalid") }}
+                                <div class = "invalid-feedback">
+                                    {% for erro in form_profissao.dataadmin.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form_profissao.dataadmin (type="date", format="mm/yyyy", class="form-control") }}
+                              {% endif %}
+                          </div>
+                          <div class="form-group col-6">
+                              {{ form_profissao.datafim.label (class="form-control-label") }}
+
+                              {% if form_profissao.datafim.errors %}
+                                {{ form_profissao.datafim (class="form-control is-invalid") }}
+                                <div class = "invalid-feedback">
+                                    {% for erro in form_profissao.datafim.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form_profissao.datafim (type="date", placeholder="mm/yyyy", class="form-control") }}
+                              {% endif %}
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          {{ form_profissao.atribuicao.label (class="form-control-label") }}
+
+                          {% if form_profissao.atribuicao.errors %}
+                            {{ form_profissao.atribuicao (class="form-control is-invalid") }}
+                            <div class = "invalid-feedback">
+                                {% for erro in form_profissao.atribuicao.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                            {{ form_profissao.atribuicao (class="form-control") }}
+                          {% endif %}
+                      </div>
+                      <div class="form-group">
+                          {{ form_profissao.conquistas.label (class="form-control-label") }}
+
+                          {% if form_profissao.conquistas.errors %}
+                            {{ form_profissao.conquistas (class="form-control is-invalid") }}
+                            <div class = "invalid-feedback">
+                                {% for erro in form_profissao.conquistas.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                            {{ form_profissao.conquistas (class="form-control") }}
+                          {% endif %}
+                      </div>
+                  </fieldset>
+                  {{ form_profissao.botaoSubmitConfirmarProfissao (class = "btn btn-primary mt-2") }}
+              </form>
+          </div>
+    </div>
+</div>
+<br>
+
+{% endblock %}

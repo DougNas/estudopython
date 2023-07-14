@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <div>
+        <section class="section about-section gray-bg" id="about">
+            <div class="contaixner">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-lg-8">
+                        <div class="about-text go-to">
+                            <h3 class="dark-color">Eu sou:</h3>
+                            <h6 class="theme-color lead">
+                                <strong style="text-color: #000080">
+                                    {{ usuario1.firstname }}
+                                </strong>
+                                {{ usuario1.lastname }}
+                            </h6>
+                            <p>
+                                Atualmente eu sou
+                                <mark>
+                                    {{ usuario1.profissao }}
+                                </mark>.
+                                {{ usuario1.objetivo }}
+                            </p>
+                            <div class="row about-list">
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>Eu nasci em:</label>
+                                        <p><strong>{{ usuario1.nascimento.strftime("%d/%m/%Y") }}</strong></p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Resido em:</label>
+                                        <p><strong>{{ usuario1.logradouro }}</strong></p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Local:</label>
+                                        <p><strong>{{ usuario1.bairro }}, {{ usuario1.cidade }} - {{ usuario1.uf }}</strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>E-mail</label>
+                                        <p><strong>{{ usuario1.email }}</strong></p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Telefone</label>
+                                        <p><strong>{{ usuario1.fone }}</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block px-5">
+                        <div class="about-avatar border border-5">
+                            <img src="{{ foto_perfil }}" class="rounded" width="300">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <br>
+                <div class="counter">
+                    <div class="row">
+                        <div>
+                            <h3 class="dark-color" id="conhecimentos">Cursos e conhecimentos:</h3>
+                            {% for tipo in ordem_curso %}
+                                {% for habilidade in habilidades %}
+                                    {% if habilidade.tipo_curso == tipo %}
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h6 class="theme-color lead">
+                                                    <strong>
+                                                        {% if current_user.is_authenticated %}
+                                                        <a href="{{ url_for('editar_habilidade', habilidade_id=habilidade.id) }}">
+                                                            {{ habilidade.curso }}
+                                                        </a>
+                                                        {% else %}
+                                                            {{ habilidade.curso }}
+                                                        {% endif %}
+                                                    </strong> na {{ habilidade.escola }}
+                                                </h6>
+                                                <p>
+                                                    <strong>
+                                                        <!-- Colocar um SE aqui, se datafinal vazio imprimir 'em andamento' -->
+                                                        {% if habilidade.datafinal != None %}
+                                                            De: {{ habilidade.dataini.strftime("%m/%Y") }} à {{ habilidade.datafinal.strftime("%m/%Y") }}
+                                                        {% else %}
+                                                            De: {{ habilidade.dataini.strftime("%m/%Y") }} à Atualmente
+                                                        {% endif %}
+                                                    </strong>
+                                                </p>
+                                                <p>{{ habilidade.competencia }}</p><br>
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url_for('static', filename='images/{}'.format(habilidade.certificado)) }}" class="rounded" width="150">
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="counter">
+                    <div class="row">
+                        <div>
+                            <h3 class="dark-color" id="experiencias">Experiências Profissionais:</h3>
+                            {% for experiencia in experiencias %}
+                                <h6 class="theme-color lead">
+                                    <strong>
+                                        {% if current_user.is_authenticated %}
+                                        <a href="{{ url_for('editar_profissao', profissao_id=experiencia.id) }}">
+                                            {{ experiencia.cargo }}
+                                        </a>
+                                        {% else %}
+                                            {{ experiencia.cargo }}
+                                        {% endif %}
+                                    </strong> na {{ experiencia.entidade }}
+                                </h6>
+                                <p>
+                                    <strong>
+                                        {% if experiencia.datafim != None %}
+                                            De: {{ experiencia.dataadmin.strftime("%m/%Y") }} à {{ experiencia.datafim.strftime("%m/%Y") }}
+                                        {% else %}
+                                            De: {{ experiencia.dataadmin.strftime("%m/%Y") }} à Atualmente
+                                        {% endif %}
+                                    </strong>
+                                </p>
+                                <p>{{ experiencia.atribuicao }}</p>
+                                <p>{{ experiencia.conquistas }}</p><br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="counter">
+                    <div class="row">
+                        <div>
+                            <h3 class="dark-color">Observações finais:</h3>
+                            <p>{{ usuario1.competencias }}</p><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
