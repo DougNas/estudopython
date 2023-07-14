@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
-
+import os
 """
 ----------------Arquivo de inicialização da aplicação---------------
 
@@ -28,10 +28,11 @@ _____________________________________________________________________
 app = Flask(__name__)
 
 app.static_folder = 'static'
-
 app.config['SECRET_KEY'] = 'eaa73db843ffcf47037d4cfca2c8c514'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curriculo.db'
-
+if os.getenv("DATABASE_URL"):
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curriculo.db'
 
 database = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -41,3 +42,4 @@ login_manager.login_message = 'Está pagina só é acessivel para usuários loga
 login_manager.login_message_category = 'alert-danger'
 
 from meucurriculo import routes
+
